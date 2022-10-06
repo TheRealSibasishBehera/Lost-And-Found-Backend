@@ -111,23 +111,17 @@ def markUserFound(req):
     foundItem = Found.objects.filter(id = req.jsonbody(req).get("id"), user_id = req.user["uid"]).first()
     if not foundItem:
         return JsonResponse({"status": False, "error": "Item not found"}, status=404)
+
+    foundItem.found = True
+    foundItem.save()
+
+    return JsonResponse({
+        "status": True
+    })
+
 __all__=[
     "latestFound",
     "getItem",
     "newItem",
     "markUserFound"
 ]
-
-def listItem(req):
-    """
-     URI looks like: /found
-    """
-    if req.method != "GET":
-        return JsonResponse({"status": False, "error": "Method not allowed"}, status=405)
-    item = Feedback.objects.all()
-    if len(item)<5 | item == None:
-        return JsonResponse({"status": False, "error": "Not enough Feedback"}, status=404)
-    return JsonResponse({
-        "status": True,
-        **item
-    })
