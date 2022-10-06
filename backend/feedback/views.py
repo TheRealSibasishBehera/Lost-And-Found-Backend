@@ -46,7 +46,6 @@ def getFeedbacks(req):
         page_size = 5
     if not page_number:
         page_number = 1
-
     feedbacks = Feedback.objects.order_by("-created").values()
     paginated = Paginator(list(feedbacks), page_size)
     curr_page = paginated.get_page(page_number)

@@ -5,7 +5,9 @@ def newid():
     return token_urlsafe(10)
 
 class Lost(models.Model):
-    id = models.CharField("Unique ID of lost item", max_length=10, primary_key=True, default=newid)
+    def __str__(self):
+        return self.title    
+    id = models.CharField("Unique ID of lost item", max_length=10, primary_key=True, default=token_urlsafe(10))
     user_id = models.CharField("User uid", max_length=20)
     user_name = models.CharField("User name", max_length=100)
     title=models.CharField("Title of Lost Item", max_length=50)

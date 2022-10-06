@@ -58,7 +58,7 @@ def latestLost(req):
     return JsonResponse(res)
     
 
-def getItem(req, id):
+def getItem(req, id)a
     """
     URI looks like: /lost/<id>
     """

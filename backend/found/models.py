@@ -6,6 +6,8 @@ def newid():
 
 # Create your models here.
 class Found(models.Model):
+    def __str__(self):
+        return self.title
     id = models.CharField("Unique ID of lost item", max_length=10, primary_key=True, default=newid)
     user_id = models.CharField("User uid", max_length=20)
     user_name = models.CharField("User name", max_length=100)
